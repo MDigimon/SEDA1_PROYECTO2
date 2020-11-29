@@ -50,3 +50,16 @@ void caminar_maletas(int m){
 	}
 	system("pause>>cls");
 }
+
+int comprobar(string dato){
+	int num;
+	for(int i=0; i < dato.size(); i++){
+		if(isdigit(dato[i]) == 0){
+			if((int)dato[i] != 0){
+				return -1;
+			}
+		}		
+	}
+	istringstream(dato) >> num;
+	return num;
+}

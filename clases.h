@@ -2,6 +2,8 @@
 #define clases
 
 #include <iostream>
+#include <sstream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -10,6 +12,7 @@ class Pasajero{
 		string nombre;
 		int maletas;
 	public:
+		int get_maletas();
 		void captura();
 };
 

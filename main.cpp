@@ -1,7 +1,8 @@
 #include <iostream>
 
-#include "clases.h"
+
 #include "funciones.h"
+#include "clases.h"
 
 using namespace std;
 

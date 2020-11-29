@@ -4,6 +4,7 @@
 #include <iostream>
 #include <windows.h>
 #include <stdlib.h>
+#include <sstream>
 
 using namespace std;
 
