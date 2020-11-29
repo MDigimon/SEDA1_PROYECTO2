@@ -6,8 +6,7 @@
 using namespace std;
 
 int main(){
-	
+	gotoxy(12, 16);
 	
 	return 0;
 }
-
