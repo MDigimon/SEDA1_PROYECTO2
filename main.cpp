@@ -6,7 +6,8 @@
 using namespace std;
 
 int main(){
-	taxy();
+	 caminar_maletas(2);
+	
 	
 	return 0;
 }

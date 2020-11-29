@@ -8,7 +8,9 @@
 using namespace std;
 
 void gotoxy(int x,int y);
-void taxy();
+void caminar();
+void caminar_maletas(int m);
+
 
 
 #endif
