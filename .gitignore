@@ -40,3 +40,4 @@ Makefile.win
 .vs/slnx.sqlite
 .vs/SEDA1_PROYECTO2/v16/Browse.VC.db
 .vs/SEDA1_PROYECTO2/v16/.suo
+cls

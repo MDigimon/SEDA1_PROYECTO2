@@ -1,5 +1,5 @@
-#ifndef clases
-#define clases
+#ifndef funciones
+#define funciones
 
 #include <iostream>
 #include <windows.h>
