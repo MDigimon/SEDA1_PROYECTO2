@@ -7,6 +7,11 @@
 using namespace std;
 
 int main(){
+	int pasajeros;
+	string opc, temp;
+	Cola *frente, *fin;
+	Pila *delante;
+	
 	 caminar_maletas(2);
 	
 	

@@ -1,4 +1,5 @@
 #include "funciones.h"
+#include "clases.h"
 
 void gotoxy(int x,int y){  
     HANDLE hcon;  
@@ -7,7 +8,7 @@ void gotoxy(int x,int y){
     dwPos.X = x;  
     dwPos.Y= y;  
     SetConsoleCursorPosition(hcon,dwPos);  
-}  
+};
 
 void caminar(){
 	int ban=0;
@@ -24,7 +25,7 @@ void caminar(){
 		Sleep(100);
 	}
 	system("pause>>cls");
-}
+};
 
 void caminar_maletas(int m){
 	int ban=0;
@@ -49,7 +50,7 @@ void caminar_maletas(int m){
 		Sleep(100);
 	}
 	system("pause>>cls");
-}
+};
 
 int comprobar(string dato){
 	int num;
@@ -62,4 +63,49 @@ int comprobar(string dato){
 	}
 	istringstream(dato) >> num;
 	return num;
-}
+};
+
+int vacia(Cola* frente){
+	if(frente == NULL){
+		return 1;
+	}
+	return 0;
+};
+
+void agregar_cola(Cola *&frente, Cola *&fin, Pasajero p){
+	Cola *nuevo = new Cola();
+	nuevo->persona = p;
+	nuevo->next = frente;
+	if(vacia(frente) == 1){
+		frente = nuevo;
+	}
+	else{
+		fin->next = nuevo;
+	}
+	fin = nuevo;
+};
+
+void eliminar_cola(Cola *&frente, Cola *&fin){
+	Cola *aux = frente;
+	if(frente == fin){
+		frente = NULL;
+		fin = NULL;
+	}
+	else{
+		frente = frente->next;
+	}
+	delete(aux);
+};
+
+void agregar_pila(Pila *&pila, Pasajero n){
+	Pila *temp = new Pila();
+	temp->persona = n;
+	temp->next = pila;
+	pila = temp;
+};
+
+void eliminar_pila(Pila *&pila){
+	Pila *temp = pila;
+	pila = temp->next;
+	delete(temp);
+};
