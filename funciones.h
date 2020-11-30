@@ -9,8 +9,8 @@
 using namespace std;
 
 void gotoxy(int x,int y);
-void caminar();
-void caminar_maletas(int m);
+void caminar(int x);
+void caminar_maletas(int m, int x);
 
 
 

@@ -3,6 +3,7 @@
 
 #include "funciones.h"
 #include "clases.h"
+#include "animaciones.h"
 
 using namespace std;
 
@@ -12,7 +13,8 @@ int main(){
 	Cola *frente, *fin;
 	Pila *delante;
 	
-	 caminar_maletas(2);
+	ticket(1);
+	maletas(2);
 	
 	
 	return 0;
