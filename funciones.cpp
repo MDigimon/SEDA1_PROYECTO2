@@ -26,7 +26,27 @@ void caminar(int x){
 		
 	}
 	gotoxy(x,10);cout<< "  o";
-	gotoxy(x,11); cout<< " /| \\";
+	gotoxy(x,11); cout<< " /|\\";
+	gotoxy(x,12); cout<< "  \|\\ ";
+};
+
+void caminar2(int x){
+	int ban=0;
+	for(int i=13;i<x+13;i++){
+		gotoxy(i,10);cout<< "  o";
+		gotoxy(i,11); cout<< " /| \\";
+		if(ban==0){
+			gotoxy(i,12); cout<< " / ";
+			ban=1;
+		}else{
+			gotoxy(i,12); cout<< "   \\";
+			ban=0;
+		}
+		Sleep(100);
+		
+	}
+	gotoxy(x,10);cout<< "  o";
+	gotoxy(x,11); cout<< " /|\\";
 	gotoxy(x,12); cout<< "  \|\\ ";
 };
 
@@ -78,16 +98,63 @@ int comprobar(string dato){
 	return num;
 };
 
-int vacia(Cola* frente){
+int vacia(Pasajero* frente){
 	if(frente == NULL){
 		return 1;
 	}
 	return 0;
 };
 
-void agregar_cola(Cola *&frente, Cola *&fin, Pasajero p){
-	Cola *nuevo = new Cola();
-	nuevo->persona = p;
+void captura(Pasajero *&frente, Pasajero *&fin){
+	string a, dato;
+	int num, f=1, f2=0;
+	
+	cout << "Nombre: ";
+	getline(cin, a);
+	fflush(stdin);
+	
+	while(f == 1){
+		cout << "Numero de maletas [0, 1, 2]: ";
+		cin >> dato;
+		fflush(stdin);
+		num = comprobar(dato);
+		if(num == -1){
+			cout << "----------DATO INCORRECTO---------" << endl;
+			do{
+				cout << "Desea Continuar Registrando este Pasajero?\n\t [1]Si  [2]No " << endl;
+				cin >> dato;
+				if(dato == "2"){
+					f = 0;
+					frente->maletas = -1;
+					dato = "1";
+				}
+				else if(dato != "1"){
+					cout << "Otra vez te Equivocaste Compañero" << endl;
+					system("pause");
+				}
+			}while(dato != "2" && dato != "1");
+		}
+		else{
+			if(num > 2){
+				cout << "Lleva Demasiadas Maletas" << endl;
+				cout << "No Puede Entrar al Avion asi" << endl;
+				frente->maletas = -1;
+				system("pause");
+			}
+			else{
+				agregar_cola(frente, fin, a, num);
+				f=0;
+			}
+		}
+	}
+}
+
+
+
+void agregar_cola(Pasajero *&frente, Pasajero *&fin, string a, int b){
+	Pasajero *nuevo = new Pasajero();
+	nuevo->nombre = a;
+	nuevo->maletas = b;
 	nuevo->next = frente;
 	if(vacia(frente) == 1){
 		frente = nuevo;
@@ -98,27 +165,47 @@ void agregar_cola(Cola *&frente, Cola *&fin, Pasajero p){
 	fin = nuevo;
 };
 
-void eliminar_cola(Cola *&frente, Cola *&fin){
-	Cola *aux = frente;
-	if(frente == fin){
-		frente = NULL;
-		fin = NULL;
+int pasajeros(){
+	string dato;
+	int num;
+	cout << "\t\tNumero de Pasajeros: ";
+	cin >> dato;
+	fflush(stdin);
+	
+	num = comprobar(dato);
+	if(num == -1){
+		cout << "Dato Incorrecto" << endl;
+		system("pause");
+		return -1;
+	}
+	else if(num == 0){
+		cout << "El Vuelo no Puede Llevar 0 Pasajeros" << endl;
+		system("pause");
+		return -1;
+	}
+	else if(num > 10){
+		cout << "El Vuelo Lleva Demasiados Pasajeros" << endl;
+		system("pause");
+		return -1;
 	}
 	else{
-		frente = frente->next;
+		return num;
 	}
-	delete(aux);
-};
+	
+}
 
-void agregar_pila(Pila *&pila, Pasajero n){
-	Pila *temp = new Pila();
-	temp->persona = n;
-	temp->next = pila;
-	pila = temp;
-};
-
-void eliminar_pila(Pila *&pila){
-	Pila *temp = pila;
-	pila = temp->next;
-	delete(temp);
-};
+int vuelo(){
+	string opc;
+	while(true){
+		cout << "Desea Capturar un Nuevo Numero de Pasajeros para un Nuevo Vuelo?" << endl;
+		cout << "\t\t[1]Si   [2]No" << endl << "\t\t  ";
+		getline(cin, opc);
+		fflush(stdin);
+		if(opc == "1"){
+			return 1;
+		}
+		else if(opc == "2"){
+			return 0;
+		}
+	}
+}

@@ -8,14 +8,31 @@
 using namespace std;
 
 int main(){
-	int pasajeros;
-	string opc, temp;
-	Cola *frente, *fin;
-	Pila *delante;
+	int p, f=1;
+	string opc;
+	Pasajero *frente = NULL, *fin = NULL;
 	
-	ticket(1);
-	maletas(2);
-	
+	while(f == 1){
+		system("cls");
+		principal();
+		p=pasajeros();
+		if(p != -1){
+			for(int i=0; i<p; i++){
+				captura(frente, fin);
+			}
+			
+			ticket(p, frente);
+			maletas(p, frente);
+			avion(p, frente);
+			taxy(p, frente);
+			f = 0;
+		}
+		else{
+			if(vuelo() == 0){
+				f = 0;
+			}
+		}
+	}
 	
 	return 0;
 }

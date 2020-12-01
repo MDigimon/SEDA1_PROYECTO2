@@ -8,25 +8,12 @@
 using namespace std;
 
 class Pasajero{
-	private:
+	public:
 		string nombre;
 		int maletas;
-	public:
-		int get_maletas();
-		void captura();
+		Pasajero* next;
 };
 
-class Cola{
-	public:
-		Pasajero persona; 
-		Cola* next;
-};
-
-class Pila{
-	public:
-		Pasajero persona;
-		Pila* next;
-};
 
 #endif
 //clases.h
